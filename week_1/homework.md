@@ -63,6 +63,7 @@ Remember that `lpep_pickup_datetime` and `lpep_dropoff_datetime` columns are in 
 - 21090
 
 **Answer: 20530**
+
 ** SQL Query: SELECT count(*)
 	FROM public.green_taxi_data
 WHERE date(lpep_pickup_datetime)='2019-01-15'
@@ -78,7 +79,8 @@ Use the pick up time for your calculations.
 - 2019-01-15
 - 2019-01-10
 
-**Answer: 2019-01-15 ** 
+**Answer: 2019-01-15 **
+ 
 ** SQL Query: SELECT date(lpep_pickup_datetime), MAX(trip_distance) as M
 	FROM public.green_taxi_data
 GROUP BY date(lpep_pickup_datetime)
@@ -95,6 +97,7 @@ In 2019-01-01 how many trips had 2 and 3 passengers?
 - 2: 1282 ; 3: 274
 
 **Answer: 2: 1282; 3: 254**
+
 ** SQL Query: SELECT passenger_count, count(*)
 FROM green_taxi_data
 WHERE date(lpep_pickup_datetime)='2019-01-01'
@@ -114,5 +117,6 @@ Note: it's not a typo, it's `tip` , not `trip`
 - Long Island City/Queens Plaza
 
 **Answer: Long Island City/Queens Plaza**
+
 ** SQL Query: SELECT z2."Zone", max(tip_amount) AS Max_tip FROM green_taxi_data INNER JOIN zones z on green_taxi_data."PULocationID" = z."LocationID" INNER JOIN zones z2 on green_taxi_data."DOLocationID" = z2."LocationID" WHERE z."Zone"."Astoria" GROUP BY z2."Zone" ORDER BY Max_tip DESC LIMIT 1**
 
